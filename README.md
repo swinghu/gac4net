@@ -24,7 +24,7 @@ Gac4Net crawl the below information
 
 these all information Guaranteed the info wholeness,these information will sufficient for research.In my machine,Gac4Net have crawled about 40M apps information ,20M [Google + ](https://plus.google.com/),and 100M user Reviews. 
 
-Even though the program down,you can start it again ,then it will work again.
+Even though the program may down,you can start it again ,then it will work.
 
 # About me
 My name is swinghu, i am a  developer from China who study at WHU at the moment, Knowing C/C++,Java,C#,Liking backend developing.
