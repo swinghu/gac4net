@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30626.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrawlUserInfo", "WebCrawler\CrawlUserInfo.csproj", "{16EEE6B1-EF05-4489-8619-39861EFE0D4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClick", "..\Auto3Click\AutoClick\AutoClick.csproj", "{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

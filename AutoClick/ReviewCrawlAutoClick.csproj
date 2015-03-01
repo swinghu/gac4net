@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutoClick</RootNamespace>
+    <AssemblyName>AutoClick</AssemblyName>
+    <ManifestCertificateThumbprint>7B41CCA8214907C080FDEAE79F3628EE865CEE07</ManifestCertificateThumbprint>
+    <ManifestKeyFile>TianXia2_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SignAssembly>false</SignAssembly>
+    <ApplicationIcon>autoclick.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>F:\Documents and Settings\zhuhongchen\桌面\快速保存工具\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>AutoClick</ProductName>
+    <PublisherName>朱红臣</PublisherName>
+    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>package\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>package\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SharedLibrary\Consts\Consts.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help.Designer.cs">
+      <DependentUpon>Help.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedLibrary\Models\QueuedApp.cs" />
+    <Compile Include="PersonPageAnalysis.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedLibrary\MongoDB\MongoDBContext.cs" />
+    <Compile Include="SharedLibrary\MongoDB\MongoDBWrapper.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="package\BDCCommons.Log.2.0.1\BDCCommons.Log.2.0.1.nupkg" />
+    <None Include="package\BDCCommons.Log.2.0.1\BDCCommons.Log.2.0.1.nuspec" />
+    <None Include="package\HtmlAgilityPack.1.4.6\HtmlAgilityPack.1.4.6.nupkg" />
+    <None Include="package\HtmlAgilityPack.1.4.6\HtmlAgilityPack.1.4.6.nuspec" />
+    <None Include="package\HtmlAgilityPack.1.4.6\lib\winrt45\HtmlAgilityPack.pri" />
+    <None Include="package\Lz4.Net.1.0.98\Lz4.Net.1.0.98.nupkg" />
+    <None Include="package\Lz4.Net.1.0.98\Lz4.Net.1.0.98.nuspec" />
+    <None Include="package\Lz4.Net.1.0.98\tools\install.ps1" />
+    <None Include="package\mongocsharpdriver.1.8.3\License.rtf" />
+    <None Include="package\mongocsharpdriver.1.8.3\mongocsharpdriver.1.8.3.nupkg" />
+    <None Include="package\mongocsharpdriver.1.8.3\mongocsharpdriver.1.8.3.nuspec" />
+    <None Include="package\Newtonsoft.Json.5.0.8\Newtonsoft.Json.5.0.8.nupkg" />
+    <None Include="package\Newtonsoft.Json.5.0.8\Newtonsoft.Json.5.0.8.nuspec" />
+    <None Include="package\Newtonsoft.Json.5.0.8\tools\install.ps1" />
+    <None Include="package\WebUtilsLib.1.0.5\WebUtilsLib.1.0.5.nupkg" />
+    <None Include="package\WebUtilsLib.1.0.5\WebUtilsLib.1.0.5.nuspec" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AutoClick_TemporaryKey.pfx" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="autoclick.ico" />
+    <Content Include="package\BDCCommons.Log.2.0.1\lib\net40\BDCCommons.Log.dll" />
+    <Content Include="package\BDCCommons.Log.2.0.1\lib\net40\BDCCommons.Log.XML" />
+    <Content Include="package\BDCCommons.Log.2.0.1\lib\net45\BDCCommons.Log.dll" />
+    <Content Include="package\BDCCommons.Log.2.0.1\lib\net45\BDCCommons.Log.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\HAPIcon.png" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.xml" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net40-client\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net40-client\HtmlAgilityPack.xml" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl3-wp\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl3-wp\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl4\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl4\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl5\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\sl5\HtmlAgilityPack.XML" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\winrt45\HtmlAgilityPack.dll" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\lib\winrt45\HtmlAgilityPack.xml" />
+    <Content Include="package\HtmlAgilityPack.1.4.6\readme.txt" />
+    <Content Include="package\Lz4.Net.1.0.98\content\net35\x86\lz4X86.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\content\net40\x86\lz4X86.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\content\net45\x86\lz4X86.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net35\Lz4Net.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net35\Lz4Net.XML" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net40\Lz4Net.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net40\Lz4Net.XML" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net45\Lz4Net.dll" />
+    <Content Include="package\Lz4.Net.1.0.98\lib\net45\Lz4Net.XML" />
+    <Content Include="package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll" />
+    <Content Include="package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.XML" />
+    <Content Include="package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll" />
+    <Content Include="package\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.XML" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.xml" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll" />
+    <Content Include="package\Newtonsoft.Json.5.0.8\lib\portable-net45+wp80+win8\Newtonsoft.Json.xml" />
+    <Content Include="package\WebUtilsLib.1.0.5\lib\net40\WebUtilsLib.dll" />
+    <Content Include="package\WebUtilsLib.1.0.5\lib\net40\WebUtilsLib.XML" />
+    <Content Include="package\WebUtilsLib.1.0.5\lib\net45\WebUtilsLib.dll" />
+    <Content Include="package\WebUtilsLib.1.0.5\lib\net45\WebUtilsLib.XML" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

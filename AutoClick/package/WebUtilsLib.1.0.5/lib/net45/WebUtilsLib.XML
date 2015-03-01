@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebUtilsLib</name>
+    </assembly>
+    <members>
+        <member name="M:WebUtilsLib.OAuthBase.ComputeHash(System.Security.Cryptography.HashAlgorithm,System.String)">
+            <summary>
+            Auxiliar method to compute a hash value
+            </summary>
+            <param name="hashAlgorithm">The hashing algoirhtm used. It must be initialized prior to passing it to this method</param>
+            <param name="data">Data to the hash</param>
+            <returns>Base64 string of the Hash Value</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GetQueryParameters(System.String)">
+            <summary>
+            Parse the parameters and
+            organize them into a list of QueryParameters
+            </summary>
+            <param name="parameters">QueryString for parsing</param>
+            <returns>List of Parsed QueryParameters</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.UrlEncode(System.String)">
+            <summary>
+            Applies encode to every char
+            that needs it, in order
+            to fit OAuth Standard
+            </summary>
+            <param name="value">Parameter to be encoded</param>
+            <returns>Encoded parameter</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.NormalizeRequestParameters(System.Collections.Generic.List{WebUtilsLib.QueryParameter})">
+            <summary>
+            Normalizes the request parameters
+            according to OAuth Standards
+            </summary>
+            <param name="parameters">List of preveiously sorted parameters</param>
+            <returns>String representation of the normalized parameters</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateSignatureBase(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Generate the signature base that is used to produce the signature
+            </summary>
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>        
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">Must be a Valid HTTP Method Verb. (POST or GET for instance)</param>
+            <param name="timestamp">Generated Timestamp for the signature</param>
+            <param name="nonce">Random Implementantion of a number for the signature</param>
+            <param name="callback">Callback url,used to generate the signature</param>
+            <param name="verifier">Verifier that you receive after the authorization step. Use String.Empty if you dont have it yet.</param>
+            <param name="signatureType">Default value is SignatureTypes.HMACSHA1</param>
+            <param name="normalizedUrl"></param>
+            <param name="normalizedRequestParameters"></param>
+            <returns>Generated Signature base</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateSignatureUsingHash(System.String,System.Security.Cryptography.HashAlgorithm)">
+            <summary>
+            Generate the signature value based on the given signature base and hash algorithm
+            </summary>
+            <param name="signatureBase">The signature based as produced by the GenerateSignatureBase method </param>
+            <param name="hash">The hash algorithm used to perform the hashing. If the hashing algorithm requires initialization or a key it should be set prior to calling this method</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateSignature(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Generates a signature using the HMAC-SHA1 algorithm
+            </summary>		
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>
+            <param name="consumerSecret">The consumer seceret</param>
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">The http method used. Must be a valid HTTP method verb (POST,GET,PUT, etc)</param>
+            <param name="timestamp">Generated Timestamp for the signature</param>
+            <param name="nonce">Random Implementantion of a number for the signature</param>
+            <param name="callback">Callback url,used to generate the signature</param>
+            <param name="verifier">Verifier that you receive after the authorization step. Use String.Empty if you dont have it yet.</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateSignature(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,WebUtilsLib.OAuthBase.SignatureTypes,System.String@,System.String@)">
+            <summary>
+            Generates a signature using the specified signatureType 
+            </summary>		
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>
+            <param name="consumerSecret">The consumer seceret</param>
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">The http method used. Must be a valid HTTP method verb (POST,GET,PUT, etc)</param>
+            <param name="timestamp">Generated Timestamp for the signature</param>
+            <param name="nonce">Random Implementantion of a number for the signature</param>
+            <param name="callback">Callback url,used to generate the signature</param>
+            <param name="verifier">Verifier that you receive after the authorization step. Use String.Empty if you dont have it yet.</param>
+            <param name="signatureType">The type of signature to use</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateTimeStamp">
+            <summary>
+            Generates a Timestamp to be used on the 
+            signature creating
+            </summary>
+            <returns>String with the timestamp</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuthBase.GenerateNonce">
+            <summary>
+            Generates a nonce random number
+            to be used in the signature
+            </summary>
+            <returns>Random number</returns>
+        </member>
+        <member name="T:WebUtilsLib.OAuthBase.SignatureTypes">
+            <summary>
+            Provides a predefined set of algorithms that are supported officially by the protocol
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.GetRequestToken">
+            <summary>
+            First Step of oAuth Process.
+            Get Token and TokenSecret values
+            and store as attributes
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.GetAuthorizationUrl">
+            <summary>
+            Generates the URL used for the Authorization
+            step and stores it inside this
+            instance
+            </summary>
+            <returns>Generated URL For the Request</returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.GetAccessToken">
+            <summary>
+            Uses All the Tokens and Verifier
+            obtained in the past steps
+            (RequestToken and AuthorizeToken)
+            to get the AccessTokens.
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.GenerateParametersForRequest(System.String,System.String)">
+            <summary>
+            Generates the PostData used
+            for obtaining tokens.
+            
+            Override this method if your service needs any other logic for generating these
+            parameters.
+            </summary>
+            <param name="urlOfRequest">Url of the Request.</param>
+            <param name="HttpMethod">HTTPMethod Verb, "POST",for instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.ParseTokensFromResponse(System.String)">
+            <summary>
+            Extract Tokens from the Web Response String
+            </summary>
+            <param name="response">Query String containing token values for parsing</param>
+        </member>
+        <member name="M:WebUtilsLib.OAuth.ClearInformation">
+            <summary>
+            Erases all the previous stored values for
+            Api Key,Api Secret Key,Token,Token Secret,
+            Verifier,Api Host,Callback,Signature and URLS
+            for Request Token,User Authorization and Access Token.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.RequestTokenUrl">
+            <summary>
+            URL used for the First Step of the 
+            OAuth Flow, Getting Request Tokens.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.AuthenticateUserUrl">
+            <summary>
+            URL used for the Second Step of the 
+            OAuth Flow,Authenticating a User
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.FullAuthenticationUrl">
+            <summary>
+            Authentication URL appended with
+            the token obtained in the RequestToken
+            step.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.AccessTokenUrl">
+            <summary>
+            URL Used in the third step of the 
+            OAuth Flow,Getting AccessTokens
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.APIHost">
+            <summary>
+            Host used in the requests
+            for Tokens
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.Callback">
+            <summary>
+            Callback url. 
+            Request will redirect user to this 
+            Address after the Request
+            is complete.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.APIKey">
+            <summary>
+            Key for the Application 
+            or consumer obtained 
+            in the website of the service 
+            selected.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.APISecretKey">
+            <summary>
+            Secret Key for the Application 
+            or consumer obtained 
+            in the website of the service 
+            selected.
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.Token">
+            <summary>
+            Token obtained in the First
+            and Third Step of the OAuth
+            Flow
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.TokenSecret">
+            <summary>
+            TokenSecret obtained in the First
+            and Third Step of the OAuth
+            Flow
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.OAuth.Verifier">
+            <summary>
+            Verifier obtained in the second
+            and Third Step of the OAuth
+            Flow
+            </summary>
+        </member>
+        <member name="T:WebUtilsLib.QueryParameter">
+            <summary>
+            Provides an internal structure to sort the query parameter
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.QueryParameter.#ctor(System.String,System.String)">
+            <summary>
+            Class Construtor
+            </summary>
+            <param name="key">Key for the Parameter</param>
+            <param name="value">Value of this parameter</param>
+        </member>
+        <member name="P:WebUtilsLib.QueryParameter.Key">
+            <summary>
+            Getter property for 
+            the Key attribute
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.QueryParameter.Value">
+            <summary>
+            Getter property for the
+            Valye attribute
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.QueryParameterComparer.Compare(WebUtilsLib.QueryParameter,WebUtilsLib.QueryParameter)">
+            <summary>
+            Compares Both Parameters
+            </summary>
+            <param name="x">First element to be compared</param>
+            <param name="y">Second element to be compared</param>
+            <returns>A number that indicates the lexical relationship between the two comparands</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.#ctor">
+            <summary>
+            Class Constructor
+            </summary>        
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ClearCookies">
+            <summary>
+            Clear the content of the 
+            Cookie Container class used in 
+            the requests
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ClearError">
+            <summary>
+            Clears the last error variable
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.TurnOffCertificateValidator">
+            <summary>
+            Ignored any certificate validation issued by the request.
+            This usually solves Validation/Authentication errors
+            such as "access denied" or "Forbidden"
+            </summary>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.Get(System.String,System.Boolean)">
+            <summary>
+            Executes a Get
+            creating an HttpWebRequest 
+            object based on previously 
+            set attributes
+            
+            OBS: Caso esta implementação dê algum problema, fazer o seguinte:
+             1. Ler todos os bytes do stream, bloco a bloco, mas sem fazer encoding, só ler os bytes
+             2. Guardar os bytes e fazer encoding deles para string, usando o m_encoding
+             3. Procurar a tag de encoding, e , se o encoding for diferente do m_encoding, fazer encoding dos bytes
+             guardados, para o encoding da página
+             
+            </summary>
+            <returns>Response of the Request. Empty string if any error ocurred.</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ResponsePost(System.String,System.String,System.Boolean)">
+            <summary>
+            Executes a post request and returns the response
+            instead of the text/html/json/xml
+            of the request
+            </summary>
+            <param name="url">Url of the request</param>
+            <param name="throwOnError"></param>
+            <returns>WebResponse of the post</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ResponseGet(System.String,System.Boolean)">
+            <summary>
+            Executes a get request and returns the response
+            instead of the text/html/json/xml
+            of the request
+            </summary>
+            <param name="url">Url for the request</param>
+            <param name="throwOnError"></param>
+            <returns>Web response of the get</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.GetBytes(System.String,System.Boolean)">
+            <summary>
+            Gets the stream        
+            </summary>
+            <param name="url">The URL.</param>        
+            <returns>True if no error ocurred</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.GetBitmap(System.String,System.Boolean)">
+            <summary>
+            Gets the web response
+            as a Bitmap
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>Bitmap response of the web request</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.Post(System.String,System.String,System.Boolean)">
+            <summary>
+            Executes a POST
+            creating an HttpWebRequest 
+            object based on previously 
+            set attributes.
+            </summary>
+            <param name="postData">Parameters the Post Request</param>
+            <returns>Response of the Request. Empty string if any error ocurred.</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ReadRequestResponse(System.Net.HttpWebRequest,System.Text.StringBuilder,System.Text.Encoding)">
+            <summary>
+            Reads the request response, until the end
+            </summary>
+            <param name="request">The request</param>
+            <param name="htmlBuilder">The HTML builder</param>
+            <param name="defaultEncoding">The default encoding</param>
+            <returns>StringBuilder with the encoded stream</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.ReadRequestResponseUntilMaxSize(System.Net.HttpWebRequest,System.Text.StringBuilder,System.Text.Encoding)">
+            <summary>
+            Reads the request response, until the max size
+            is reached or until the end of the stream.
+            </summary>
+            <param name="request">The request</param>
+            <param name="htmlBuilder">The HTML builder</param>
+            <param name="defaultEncoding">The default encoding</param>
+            <returns>StringBuilder with the encoded stream</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:WebUtilsLib.WebRequests.IdentifyEncoding(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:WebUtilsLib.WebRequests.GetMetaTags(System.String)" -->
+        <member name="M:WebUtilsLib.WebRequests.GetEncodingValue(System.String,System.String)">
+            <summary>
+            Extracts from the tagText the value 
+            of the attribute received as argument
+            </summary>
+            <param name="tagText">Complete text of the tag</param>
+            <param name="attributeName">Name of the attribute whose value will be returned</param>
+            <returns>Value of the attribute maped by the name received</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.AssembleFullRedirectUrl(System.String,System.String)">
+            <summary>
+            Checks if the location url is a relative or absolute one.
+            If its a relative url, the method will join it with the url
+            parameter in order to build a absolute one.
+            </summary>
+            <param name="url">URL used on the request</param>
+            <param name="responseLocation">Location header of the response</param>
+            <returns>Absolute url for the redirect</returns>
+        </member>
+        <member name="M:WebUtilsLib.WebRequests.Dispose">
+            <summary>
+            Implementation of IDisposable Interface Method, Dispose
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.BufferSize">
+            <summary>
+            Size of the buffer used on the
+            memory reader class in bytes
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.UserAgent">
+            <summary>
+            UserAgent attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Accept">
+            <summary>
+            Accept attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.MaxResponseSize">
+            <summary>
+            Gets or Sets the Maximum size of a response.
+            Default value is Int32.MaxValue
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.KeepAlive">
+            <summary>
+            Connection KeepAlive attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Proxy">
+            <summary>
+            WebProxy attribute
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Credentials">
+            <summary>
+            Network credentials attribute for 
+            proxy/network authentication
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Host">
+            <summary>
+            Host attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.ContentType">
+            <summary>
+            ContentType attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Encoding">
+            <summary>
+            Encoding parameter
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.LastPageEncoding">
+            <summary>
+            Encoding used on the page of the last
+            request executed
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Referer">
+            <summary>
+            Referer attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Timeout">
+            <summary>
+            Timeout attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.ReadWriteTimeout">
+            <summary>
+            Read Write Timeout attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.ConnectionsLimit">
+            <summary>
+            ConnectionsLimit
+            attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.AllowAutoRedirect">
+            <summary>
+            AllowAutoRedirect attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.AutomaticDecompression">
+            <summary>
+            Gets or Sets the Automatic Decompression
+            attribute
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Origin">
+            <summary>
+            Origin attribute
+            Of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Headers">
+            <summary>
+            Headers attribute
+            of the HttpWebRequest
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.Error">
+            <summary>
+            Message containing the
+            last error that ocurred.
+            Can be reseted by using ClearError
+            Method
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.StatusCode">
+            <summary>
+            Check documentation for status codes
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.RedirectLocation">
+            <summary>
+            Getter for redirect location if there was any
+            </summary>
+        </member>
+        <member name="P:WebUtilsLib.WebRequests.FullRedirectLocation">
+            <summary>
+            Getter for the m_fullredirectlocation attribute
+            </summary>
+        </member>
+        <member name="T:WebUtilsLib.WebRequests.CharsetDetection">
+            <summary>
+            [MozillaCharsetDetection]
+            This detection is complete, in case of error it will run HtmlCharsetTag, and if still has errors, we use default
+            
+            [HtmlCharsetTag]
+            Search for charset tags in HTML, in case of error, we use default encoding
+            
+            [ProviderCharset]
+            Use the charset provider by user
+            </summary>
+        </member>
+        <member name="F:WebUtilsLib.WebRequests.CharsetDetection.MozillaCharsetDetection">
+            <summary>
+            Try to detect the page encoding using a character based heuristic. <para/>
+            If not found, fallback to HtmlCharsetTag, and then to DefaultCharset.
+            </summary>
+        </member>
+        <member name="F:WebUtilsLib.WebRequests.CharsetDetection.HtmlCharsetTag">
+            <summary>
+            Try to find the html charset meta tag.<para/>
+            If not found, fallback to DefaultCharset.
+            </summary>
+        </member>
+        <member name="F:WebUtilsLib.WebRequests.CharsetDetection.DefaultCharset">
+            <summary>
+            Use the provided charset encoding to decode the page
+            </summary>
+        </member>
+        <member name="T:WebUtilsLib.WebRequests.ReadResponseDelegate">
+            <summary>
+            Delegate used to decide whether to use the ReadResponse until the end method,
+            or the limited ReadResponse one.
+            </summary>
+        </member>
+    </members>
+</doc>

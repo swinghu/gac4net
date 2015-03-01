@@ -1,0 +1,4 @@
+E:\vsworkspace\GooglePlayAppsCrawler\SharedLibrary\obj\Debug\SharedLibrary.csprojResolveAssemblyReference.cache
+E:\vsworkspace\GooglePlayAppsCrawler\SharedLibrary\obj\Debug\SharedLibrary.csprojFakesResolveAssemblyReference.cache
+E:\DevSpace\vsworkspace\gac4net\GooglePlayAppsCrawler\SharedLibrary\obj\Debug\SharedLibrary.csprojFakesResolveAssemblyReference.cache
+E:\DevSpace\vsworkspace\gac4net\GooglePlayAppsCrawler\SharedLibrary\obj\Debug\SharedLibrary.csprojResolveAssemblyReference.cache

@@ -1,0 +1,580 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lz4Net</name>
+    </assembly>
+    <members>
+        <member name="T:Lz4Net.Lz4DecompressionStream">
+            <summary>
+            Stream to compress and write back data
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.HeaderSize">
+            <summary>
+            Room for header
+            </summary>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Flush">
+            <summary>
+            Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>[NotSupported]
+            Sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.SetLength(System.Int64)">
+            <summary>
+            Sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>[NotSupported]
+            Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is greater than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.m_targetStream">
+            <summary>
+            Stream we're reading from
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.m_readBuffer">
+            <summary>
+            Temporary buffer where raw data is stored.
+            Kept to be reused from one buffer fill to another
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.m_unpackedBuffer">
+            <summary>
+            Unpacked buffer
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.m_unpackedOffset">
+            <summary>
+            Read position un unpacked buffer
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4DecompressionStream.m_unpackedLength">
+            <summary>
+            Length for unpacked data
+            </summary>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Fill">
+            <summary>
+            Fills or refills the read buffer.
+            </summary>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset"/> and (<paramref name="offset"/> + <paramref name="count"/> - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support reading.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.IO.Stream"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Lz4Net.Lz4DecompressionStream.#ctor(System.IO.Stream,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ZlibDecompressionStream"/> class.
+            </summary>
+            <param name="sourceStream">The source stream.</param>
+            <param name="compression">The compression.</param>
+            <param name="closeStream">The close stream.</param>
+        </member>
+        <member name="P:Lz4Net.Lz4DecompressionStream.CanRead">
+            <summary>
+            Gets a value indicating whether the current stream supports reading.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports reading; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Lz4Net.Lz4DecompressionStream.CanSeek">
+            <summary>
+            Gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports seeking; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Lz4Net.Lz4DecompressionStream.CanWrite">
+            <summary>
+            Gets a value indicating whether the current stream supports writing.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Lz4Net.Lz4DecompressionStream.Length">
+            <summary>[NotSupported]
+            Gets the length in bytes of the stream.
+            </summary>
+            <value></value>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:Lz4Net.Lz4DecompressionStream.Position">
+            <summary>[NotSupported]
+            Gets or sets the position within the current stream.
+            </summary>
+            <value></value>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="T:Lz4Net.Lz4CompressionStream">
+            <summary>
+            Stream to compress and write back data
+            </summary>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>[NotSupported]
+            Sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the <paramref name="origin" /> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin" /> indicating the reference point used to obtain the new position.</param>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+            <returns>The new position within the current stream.</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.SetLength(System.Int64)">
+            <summary>
+            Sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support
+            both writing and seeking, such as if the stream is constructed from a pipe or
+            console output. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after
+            the stream was closed. </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>[NotSupported]
+            Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset" /> and (<paramref name="offset" /> + <paramref name="count" /> - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer" /> at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset" /> and <paramref name="count" /> is larger than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="buffer" /> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset" /> or <paramref name="count" /> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support reading.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_targetStream">
+            <summary>
+            The Stream we're writing to
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_writeBuffer">
+            <summary>
+            Write buffer
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_writeBufferOffset">
+            <summary>
+            Current position in write buffer
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_compressedBuffer">
+            <summary>
+            Buffer where compressed data is stored
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_closeStream">
+            <summary>
+            If the target stream should be close on Dispose
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4CompressionStream.m_compressionMode">
+            <summary>
+            The selected compression Move
+            </summary>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.Flush">
+            <summary>
+            Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count" /> bytes from <paramref name="buffer" /> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer" /> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset" /> and <paramref name="count" /> is greater than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="buffer" /> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset" /> or <paramref name="count" /> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.IO.Stream" /> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.#ctor(System.IO.Stream,System.Byte[],System.Byte[],Lz4Net.Lz4Mode,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ZlibCompressionStream"/> class.
+            </summary>
+            <param name="targetStream">The target stream.</param>
+            <param name="writeBuffer">The write buffer.</param>
+            <param name="compressionBuffer">The compression buffer.</param>
+            <param name="closeStream">The close stream.</param>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.#ctor(System.IO.Stream,System.Int32,Lz4Net.Lz4Mode,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ZlibCompressionStream"/> class.
+            </summary>
+            <param name="targetStream">The target.</param>
+            <param name="bufferSize">Size of the buffer.</param>
+            <param name="closeStream">The close stream.</param>
+        </member>
+        <member name="M:Lz4Net.Lz4CompressionStream.#ctor(System.IO.Stream,Lz4Net.Lz4Mode,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ZlibCompressionStream"/> class.
+            </summary>
+            <param name="targetStream">The target.</param>
+            <param name="closeStream">The close stream.</param>
+        </member>
+        <member name="P:Lz4Net.Lz4CompressionStream.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <returns>true if the stream supports reading; otherwise, false.
+            </returns>
+            <value></value>
+        </member>
+        <member name="P:Lz4Net.Lz4CompressionStream.CanSeek">
+            <summary>
+            Gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <returns>true if the stream supports seeking; otherwise, false.
+            </returns>
+            <value></value>
+        </member>
+        <member name="P:Lz4Net.Lz4CompressionStream.CanWrite">
+            <summary>
+            Gets a value indicating whether the current stream supports writing.
+            </summary>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+            <value></value>
+        </member>
+        <member name="P:Lz4Net.Lz4CompressionStream.Length">
+            <summary>[NotSupported]
+            Gets the length in bytes of the stream.
+            </summary>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+            <value></value>
+        </member>
+        <member name="P:Lz4Net.Lz4CompressionStream.Position">
+            <summary>[NotSupported]
+            Gets or sets the position within the current stream.
+            </summary>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+            <value></value>
+        </member>
+        <member name="M:Lz4Net.Lz4.LZ4_compress(System.Byte*,System.Byte*,System.Int32)">
+            <summary>
+            Native method call (PInvoke) to the LZ4_compress method.
+            The platform target (X86 or X64) is chosen at runtime. Description:
+            Compresses 'isize' bytes from 'source' into 'dest'.
+            Destination buffer must be already allocated,
+            and must be sized to handle worst cases situations (input data not compressible)
+            Worst case size evaluation is provided by function LZ4_compressBound().
+            note : destination buffer must be already allocated. 
+            To avoid any problem, size it to handle worst cases situations (input data not compressible)
+            Worst case size evaluation is provided by function LZ4_compressBound() (see "lz4.h")
+            </summary>
+            <param name="source">The source (input).</param>
+            <param name="destination">The destination (output). Its memory must alredy be allocated, use LZ4_compressBound for the size hint.</param>
+            <param name="size">The source size. Max supported value is ~1.9GB.</param>
+            <returns>The number of bytes written in buffer destination.</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.LZ4_compressHC(System.Byte*,System.Byte*,System.Int32)">
+            <summary>
+            Native method call (PInvoke) to the LZ4_compressHC method. 
+            It provide a High Compression mode that is slower but with a better compression rate.
+            The platform target (X86 or X64) is chosen at runtime. Description:
+            Compresses 'isize' bytes from 'source' into 'dest'.
+            Destination buffer must be already allocated,
+            and must be sized to handle worst cases situations (input data not compressible)
+            Worst case size evaluation is provided by function LZ4_compressBound().
+            note : destination buffer must be already allocated. 
+            To avoid any problem, size it to handle worst cases situations (input data not compressible)
+            Worst case size evaluation is provided by function LZ4_compressBound() (see "lz4.h")
+            </summary>
+            <param name="source">The source (input).</param>
+            <param name="destination">The destination (output). Its memory must alredy be allocated, use LZ4_compressBound for the size hint.</param>
+            <param name="size">The source size. Max supported value is ~1.9GB.</param>
+            <returns>The number of bytes written in buffer destination.</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.LZ4_uncompress(System.Byte*,System.Byte*,System.Int32)">
+            <summary>
+            Native method call (PInvoke) to the LZ4_uncompress method.
+            The platform target (X86 or X64) is chosen at runtime. Description:
+            note : destination buffer must be already allocated.
+            its size must be a minimum of 'osize' bytes.
+            </summary>
+            <param name="source">The source (input).</param>
+            <param name="destination">The destination (output). Its memory must alredy be allocated, use LZ4_compressBound for the size hint.</param>
+            <param name="originalSize">Size of the original buffer. Is the output size, therefore the original size.</param>
+            <returns>the number of bytes read in the source buffer (in other words, the compressed size)
+            If the source stream is malformed, the function will stop decoding and return a negative result, indicating the byte position of the faulty instruction
+            This function never writes outside of provided buffers, and never modifies input buffer.</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.LZ4_compressBound(System.Int32)">
+            <summary>
+            Provides the maximum size that LZ4 may output in a "worst case" scenario (input data not compressible)
+            primarily useful for memory allocation of output buffer.
+            </summary>
+            <param name="isize">is the input size. Max supported value is ~1.9GB.</param>
+            <returns>maximum output size in a "worst case" scenario.</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.CompressBytes(System.Byte[],Lz4Net.Lz4Mode)">
+            <summary>
+            Compresses the byte buffer.
+            This method stores a 8-byte header to store the original and compressed buffer size.
+            </summary>
+            <param name="data">The data to be compressed.</param>
+            <param name="mode">The compression mode [Fast, HighCompression].</param>
+            <returns>The compressed byte array</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.CompressBytes(System.Byte[],System.Int32,System.Int32,Lz4Net.Lz4Mode)">
+            <summary>
+            Compresses the byte buffer.
+            This method stores a 8-byte header to store the original and compressed buffer size.
+            </summary>
+            <param name="data">The data to be compressed.</param>
+            <param name="offset">The offset.</param>
+            <param name="length">The length.</param>
+            <param name="mode">The compression mode [Fast, HighCompression].</param>
+            <returns>The compressed byte array</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If length if outside data array bounds</exception>
+        </member>
+        <member name="M:Lz4Net.Lz4.Compress(System.Byte[],System.Int32,System.Int32,System.Byte[]@,Lz4Net.Lz4Mode)">
+            <summary>
+            Compresses the byte buffer.
+            This method stores a 8-byte header to store the original and compressed buffer size.
+            </summary>
+            <param name="data">The data to be compressed.</param>
+            <param name="offset">The offset.</param>
+            <param name="length">The length.</param>
+            <param name="buffer">The compression buffer. If the buffer is null or the size is insuficient, a new array will be created.</param>
+            <param name="mode">The compression mode [Fast, HighCompression].</param>
+            <returns>The compressed byte array</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.DecompressBytes(System.Byte[])">
+            <summary>
+            Decompresses the byte buffer compressed by a Lz4.CompressBytes or Lz4.Compress method.
+            This method uses the byte array header info to correctly prepare the output buffer.
+            </summary>
+            <param name="data">The compressed data returned by a Lz4.CompressBytes or Lz4.Compress method.</param>
+            <returns>The uncompressed buffer</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.Decompress(System.Byte[],System.Int32,System.Byte[]@)">
+            <summary>
+            Decompresses the byte buffer compressed by a Lz4.CompressBytes or Lz4.Compress method.
+            This method uses the byte array header info to correctly prepare the output buffer.
+            </summary>
+            <param name="data">The compressed data returned by a Lz4.CompressBytes or Lz4.Compress method.</param>
+            <param name="offset">The data buffer offset.</param>
+            <param name="buffer">The decompression buffer. If the buffer is null or the size is insuficient, a new array will be created.</param>
+            <returns>Uncompressed data size</returns>
+            <exception cref="T:System.Exception">Input data is incomplete. Data header info size is lesser than total array size</exception>
+        </member>
+        <member name="M:Lz4Net.Lz4.CompressString(System.String,Lz4Net.Lz4Mode)">
+            <summary>
+            Compresses the specified text and return a Base64 enconded string.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="mode">The compression mode [Fast, HighCompression].</param>
+            <returns>The compressed text as a Base64 enconded string</returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.DecompressString(System.String)">
+            <summary>
+            Decompresses the specified compressed text by the Lz4.CompressString method.
+            </summary>
+            <param name="compressedText">The compressed text.</param>
+            <returns>The decompressed string</returns>
+            <exception cref="T:System.Exception">Input data is incomplete or was not generated by 'CompressString'.</exception>
+        </member>
+        <member name="M:Lz4Net.Lz4.GetCompressedSize(System.Byte[])">
+            <summary>
+            Size of the compressed buffer returned by a Lz4.CompressBytes or Lz4.CompressBytesHC method.
+            </summary>
+            <param name="data">The buffer returned by a Lz4.CompressBytes or Lz4.CompressBytesHC method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lz4Net.Lz4.GetUncompressedSize(System.Byte[])">
+            <summary>
+            Size of the original (uncompressed) buffer returned by a Lz4.CompressBytes or Lz4.CompressBytesHC method.
+            </summary>
+            <param name="data">The buffer returned by a Lz4.CompressBytes or Lz4.CompressBytesHC method.</param>
+            <returns></returns>
+        </member>
+        <member name="F:Lz4Net.Lz4Mode.Fast">
+            <summary>
+            The very fast Lz4 algorithm implemtation.
+            </summary>
+        </member>
+        <member name="F:Lz4Net.Lz4Mode.HighCompression">
+            <summary>
+            A High Compression mode that is slower but with a better compression rate.
+            </summary>
+        </member>
+    </members>
+</doc>

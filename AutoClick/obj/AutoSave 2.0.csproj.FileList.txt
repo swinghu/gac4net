@@ -1,0 +1,14 @@
+bin\Debug\AutoSave.exe.config
+bin\Debug\AutoSave.exe.manifest
+bin\Debug\AutoSave.application
+bin\Debug\AutoSave.exe
+bin\Debug\AutoSave.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\TianXia.Form1.resources
+obj\Debug\TianXia.Help.resources
+obj\Debug\AutoSave.Properties.Resources.resources
+obj\Debug\AutoSave 2.0.csproj.GenerateResource.Cache
+obj\Debug\AutoSave.exe.manifest
+obj\Debug\AutoSave.application
+obj\Debug\AutoSave.exe
+obj\Debug\AutoSave.pdb

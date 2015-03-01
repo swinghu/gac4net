@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>BDCCommons.Log</id>
+    <version>2.0.1</version>
+    <title>BDCCommons.Log</title>
+    <authors>Khalid</authors>
+    <owners>Khalid</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>BDCCommons.Log</description>
+    <references>
+      <reference file="BDCCommons.Log.dll" />
+    </references>
+  </metadata>
+</package>

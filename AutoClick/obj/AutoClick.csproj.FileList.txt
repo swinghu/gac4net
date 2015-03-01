@@ -1,0 +1,14 @@
+bin\Debug\AutoClick.exe.config
+bin\Debug\AutoClick.exe.manifest
+bin\Debug\AutoClick.application
+bin\Debug\AutoClick.exe
+bin\Debug\AutoClick.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\TianXia.Form1.resources
+obj\Debug\TianXia.Help.resources
+obj\Debug\AutoClick.Properties.Resources.resources
+obj\Debug\AutoClick.csproj.GenerateResource.Cache
+obj\Debug\AutoClick.exe.manifest
+obj\Debug\AutoClick.application
+obj\Debug\AutoClick.exe
+obj\Debug\AutoClick.pdb

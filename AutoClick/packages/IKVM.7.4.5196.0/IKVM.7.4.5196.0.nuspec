@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>IKVM</id>
+    <version>7.4.5196.0</version>
+    <title>IKVM.NET</title>
+    <authors>Jeroen Frijters</authors>
+    <owners>Jeroen Frijters</owners>
+    <licenseUrl>http://sourceforge.net/apps/mediawiki/ikvm/index.php?title=License</licenseUrl>
+    <projectUrl>http://www.ikvm.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>IKVM.NET is an implementation of Java for Mono and the Microsoft .NET Framework.</description>
+    <releaseNotes>The release notes can be found here: http://ikvm.net/release/7.4.5196.0</releaseNotes>
+    <tags>IKVM.NET Java .NET</tags>
+  </metadata>
+</package>

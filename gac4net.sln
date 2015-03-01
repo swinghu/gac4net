@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewCrawlAutoClick", "AutoClick\ReviewCrawlAutoClick.csproj", "{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "GooglePlayAppsCrawler\SharedLibrary\SharedLibrary.csproj", "{07AF4C70-C92E-4011-B1D1-D6D8925A4488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreWorker", "GooglePlayAppsCrawler\PlayStoreWorker\StoreWorker.csproj", "{79D10D8F-16D6-44FB-8B56-AE29F0B06B6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreCrawler", "GooglePlayAppsCrawler\PlayStoreCrawler\StoreCrawler.csproj", "{412FE7DE-BC68-412F-8826-EDCE3E29A5F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrawlUserInfo", "CrawlUserHIstoryInfo\WebCrawler\CrawlUserInfo.csproj", "{16EEE6B1-EF05-4489-8619-39861EFE0D4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07AF4C70-C92E-4011-B1D1-D6D8925A4488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07AF4C70-C92E-4011-B1D1-D6D8925A4488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07AF4C70-C92E-4011-B1D1-D6D8925A4488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07AF4C70-C92E-4011-B1D1-D6D8925A4488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D10D8F-16D6-44FB-8B56-AE29F0B06B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D10D8F-16D6-44FB-8B56-AE29F0B06B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D10D8F-16D6-44FB-8B56-AE29F0B06B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D10D8F-16D6-44FB-8B56-AE29F0B06B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412FE7DE-BC68-412F-8826-EDCE3E29A5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412FE7DE-BC68-412F-8826-EDCE3E29A5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412FE7DE-BC68-412F-8826-EDCE3E29A5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412FE7DE-BC68-412F-8826-EDCE3E29A5F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EEE6B1-EF05-4489-8619-39861EFE0D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WebUtilsLib</id>
+    <version>1.0.5</version>
+    <title>WebUtilsLib</title>
+    <authors>Marcello Lins &amp; Breno Riba</authors>
+    <owners>Marcello Lins &amp; Breno Riba</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This library contains wrapers for the HTTPMethods GET and POST (synchronously).</description>
+    <releaseNotes>- Added Credentials Property
+- Added MaxResponseSize Property
+Proxy Authentication</releaseNotes>
+    <dependencies>
+      <dependency id="UDE.CSharp" version="1.1.0" />
+    </dependencies>
+    <references>
+      <reference file="WebUtilsLib.dll" />
+    </references>
+  </metadata>
+</package>

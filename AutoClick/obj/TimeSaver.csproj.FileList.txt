@@ -1,0 +1,14 @@
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\TianXia.Form1.resources
+obj\Release\TianXia.Properties.Resources.resources
+obj\Release\TimeSaver.csproj.GenerateResource.Cache
+obj\Release\TianXia2.exe
+bin\Release\TianXia2.exe.config
+bin\Release\TianXia2.exe.manifest
+bin\Release\TianXia2.application
+bin\Release\TianXia2.exe
+bin\Release\TianXia2.pdb
+obj\Release\TianXia2.exe.manifest
+obj\Release\TianXia2.application
+obj\Release\TianXia2.pdb
+obj\Release\TianXia.Help.resources

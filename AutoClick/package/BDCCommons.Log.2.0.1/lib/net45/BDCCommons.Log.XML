@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BDCCommons.Log</name>
+    </assembly>
+    <members>
+        <member name="M:BDC.BDCCommons.LogReader.ReadLogsimple(System.Int32)">
+            <summary>
+            Simply reads all log records.
+            </summary>
+            <param name="count">The count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogReader.ReadLogsimple(System.DateTime,System.DateTime,System.Int32,System.String,System.String,BDC.BDCCommons.TLogEventLevel,System.String)">
+            <summary>
+            Reads the logsimple.
+            </summary>
+            <param name="startDateFilter">The start date filter.</param>
+            <param name="endDateFilter">The end date filter.</param>
+            <param name="count">The count.</param>
+            <param name="filepath">The filepath.</param>
+            <param name="filename">The filename.</param>
+            <param name="filterPriority">The filter priority.</param>
+            <param name="messageFilter">The message filter.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogReader.ReadLog(System.DateTime,System.DateTime,BDC.BDCCommons.TLogEventType[],System.Int32,System.String[],System.String[],System.String,System.String)">
+            <summary>
+            Reads the log.
+            </summary>
+            <param name="startDateFilter">The start date filter.</param>
+            <param name="endDateFilter">The end date filter.</param>
+            <param name="filterPriority">The filter priority.</param>
+            <param name="count">The count.</param>
+            <param name="DomainFilterList">The domain filter list.</param>
+            <param name="TagFilterList">The tag filter list.</param>
+            <param name="filename">The filename.</param>
+            <param name="messageFilter">The message filter.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogReader.RemoveOldLogs(System.DateTime,BDC.BDCCommons.TLogEventLevel,System.String)">
+            <summary>
+            Removes the old logs.
+            </summary>
+            <param name="dateFilter">The date filter.</param>
+            <param name="minFilterPriority">The min filter priority.</param>
+            <param name="filename">The filename.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogReader.RemoveOldLogs(System.DateTime,BDC.BDCCommons.TLogEventType[],System.String)">
+            <summary>
+            Removes the old logs.
+            </summary>
+            <param name="dateFilter">The date filter.</param>
+            <param name="filterPriorityList">The filter priority list.</param>
+            <param name="filename">The filename.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BDC.BDCCommons.TLogEventLevel">
+            <summary>
+            Logging level
+            </summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Verbose">
+            <summary>Trace and all others (full detailed log)</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Debug">
+            <summary>Debug and all others</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Information">
+            <summary>OpResult, Timing, Info, Warn, Error and Fatal</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Warning">
+            <summary>Warn, Error and Fatal</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Error">
+            <summary>Error, DatabaseError and Fatal</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Critical">
+            <summary>Only Fatal errors</summary>
+        </member>
+        <member name="F:BDC.BDCCommons.TLogEventLevel.Off">
+            <summary>Turn off errors</summary>
+        </member>
+        <member name="T:BDC.BDCCommons.LogWriter">
+            <summary>
+            <c>LogWriter</c> is a singleton resposible for managing log messages.
+            It has an assyncronous behavior. The messages are written to disk by a dedicated thread.
+            </summary>
+            <example>
+            <code>
+            // Configuration to be called before LogWriter first call.
+            LogWriter.Configure ("ArquivoDeLog.log");
+            // The LogWriter instance is assesible by the static property Instance
+            LogWriter.Instace.LogMessage ("mensagem logada.");
+            </code>
+            </example>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:BDC.BDCCommons.LogWriter"/>.
+            This constructor is private to provide the singleton behavior.
+            The access is provided by the property <see cref="P:BDC.BDCCommons.LogWriter.Instance"/>.
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.ParseLogOptionLevel(System.String)">
+            <summary>
+            Parses the log option level.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.ParseThresholdLevel(System.String)">
+            <summary>
+            Parses the threshold level.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.GetMinimumEventType(BDC.BDCCommons.TLogEventLevel)">
+            <summary>
+            Sets minimum threshold.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.ConfigureLogWriter(BDC.BDCCommons.TLogEventLevel,BDC.BDCCommons.TLogOption)">
+            <summary>
+            Configures the log writer.
+            </summary>
+            <param name="threshold">The threshold.</param>
+            <param name="option">The option.</param>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.ConfigureLogWriter(System.String,BDC.BDCCommons.TLogEventLevel,BDC.BDCCommons.TLogOption)">
+            <summary>
+            Configures the log writer.
+            </summary>
+            <param name="domainName">Name of the domain.</param>
+            <param name="threshold">The threshold.</param>
+            <param name="option">The option.</param>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.ConfigureLogWriter(System.String,System.String,System.String,BDC.BDCCommons.TLogEventLevel,BDC.BDCCommons.TLogOption,System.Boolean)">
+            <summary>
+            Configures the log writer.
+            </summary>
+            <param name="domainName">Name of the domain.</param>
+            <param name="logFileName">Name of the log file.</param>
+            <param name="BaseDirectory">The base directory.</param>
+            <param name="threshold">The threshold.</param>
+            <param name="option">The option.</param>
+            <param name="forceRestart">The force restart.</param>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.Close(System.Int32)">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.RestartLogWriter">
+            <summary>
+            Restarts the <see cref="T:BDC.BDCCommons.LogWriter"/> in a safe way.
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.InitializeThread">
+            <summary>
+            Initializes the dedicated log thread.
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.DirectoryHasWritePermissions(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Directories the has write permissions.
+            </summary>
+            <param name="directoryPath">The directory path.</param>
+            <param name="LogException">The log exception.</param>
+            <param name="throwOnException">The throw on exception.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.VerifyDirectory(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Verifies the permission
+            to write in the directory specified
+            by the Path parameter. 
+            Tries Creates the Directory aswell
+            </summary>
+            <param name="path">The path.</param>
+            <param name="logException">if set to <c>true</c> [log exception].</param>
+            <param name="throwOnException">if set to <c>true</c> [throw on exception].</param>
+            <returns>True if it has write permissions,false otherwise</returns>
+        </member>
+        <member name="M:BDC.BDCCommons.LogWriter.CreateDirectory(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a directory.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="logException">if set to <c>true</c> [log exception].</param>
+            <param name="throwOnException">if set to <c>true</c> [throw on exception].</param>
+            <returns>True if the directory exists already,false otherwise</returns>
+        </member>
+        <member name="P:BDC.BDCCommons.LogWriter.Instance">
+            <summary>
+            Return the singleton instance of <see cref="T:BDC.BDCCommons.LogWriter"/>.
+            </summary>
+            <value>Singleton instance of <c>LogWriter</c>.</value>
+        </member>
+        <member name="P:BDC.BDCCommons.LogWriter.Domain">
+            <summary>
+            Gets or sets the domain.
+            </summary>
+            <value>The domain.</value>
+        </member>
+        <member name="P:BDC.BDCCommons.LogWriter.Threshold">
+            <summary>
+            Gets or sets the log level threshold.
+            </summary>
+            <value>The threshold.</value>
+        </member>
+        <member name="P:BDC.BDCCommons.LogWriter.Terminated">
+            <summary>
+            Requests LogWriter thread termination.
+            All queued messages are flushed to disk before termination.
+            Gets or sets a value indicating whether this <see cref="T:BDC.BDCCommons.LogWriter"/> termination is requested.
+            </summary>
+            <value><c>true</c> to resquest termination.</value>
+        </member>
+        <member name="P:BDC.BDCCommons.LogWriter.FileName">
+            <summary>
+            Gets the complete name of the log file.
+            </summary>
+            <value>The complete filename.</value>
+        </member>
+        <member name="T:BDC.BDCCommons.PerformanceLog">
+            <summary>
+            Class to monitor execution timings of code sections.
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.PerformanceLog.Dispose">
+            <summary>
+            Implement IDisposable for logging purposes.        
+            </summary>
+        </member>
+        <member name="M:BDC.BDCCommons.PerformanceLog.Start(System.String)">
+            <summary>
+            Starts a new instance of <c>PerformanceLog</c>.
+            </summary>
+            <param name="operationName">Name of the operation (logged tag).</param>
+            <returns></returns>
+        </member>
+        <member name="M:BDC.BDCCommons.PerformanceLog.Start">
+            <summary>
+            Starts a new instance of <c>PerformanceLog</c>.
+            The operation name is obtained from the StackFrame as the calling method name.
+            </summary>
+            <remarks>
+            There is an extra performance cost (small) associated with the stackframe query to get the method name.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="P:BDC.BDCCommons.PerformanceLog.EnableOperationLog">
+            <summary>
+            Enables/disables monitoring and logging for performance.
+            </summary>
+            <value><c>true</c> to enable.</value>
+        </member>
+        <member name="P:BDC.BDCCommons.PerformanceLog.TotalMilliseconds">
+            <summary>
+            Gets the value of the current elapsed milliseconds expressed
+            in whole and fractional milliseconds.
+            </summary>
+            <returns>
+            The total number of milliseconds represented by this instance.
+            </returns>        
+        </member>
+        <member name="T:BDC.BDCCommons.TLogMessage">
+            <summary>
+            Private class of <see cref="T:BDC.BDCCommons.LogWriter"/>.
+            Used to manage the log queue.
+            </summary>
+        </member>
+    </members>
+</doc>

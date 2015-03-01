@@ -1,0 +1,2 @@
+E:\vsworkspace\GooglePlayAppsCrawler\PlayStoreCrawler\bin\Debug\PlayStoreCrawler.exe.config
+E:\DevSpace\vsworkspace\gac4net\GooglePlayAppsCrawler\PlayStoreCrawler\obj\Debug\PlayStoreCrawler.csprojResolveAssemblyReference.cache

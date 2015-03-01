@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClick", "AutoClick.csproj", "{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppCrawl", "..\ConsoleAppCrawl\ConsoleAppCrawl.csproj", "{BAFDF8EC-99B0-4ECD-BEFF-D49DE8AA491F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://swinghu.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AutoClick.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\ConsoleAppCrawl\\ConsoleAppCrawl.csproj
+		SccProjectName2 = ../ConsoleAppCrawl
+		SccLocalPath2 = ..\\ConsoleAppCrawl
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EBE1AA-ED90-4E3C-9F24-B2052CA86A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFDF8EC-99B0-4ECD-BEFF-D49DE8AA491F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFDF8EC-99B0-4ECD-BEFF-D49DE8AA491F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFDF8EC-99B0-4ECD-BEFF-D49DE8AA491F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFDF8EC-99B0-4ECD-BEFF-D49DE8AA491F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
