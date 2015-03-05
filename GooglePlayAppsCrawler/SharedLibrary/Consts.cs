@@ -63,9 +63,6 @@ namespace SharedLibrary
         public static readonly int MAX_REQUEST_ERRORS   = 100;
         public static readonly int MAX_QUEUE_TRIES      = 5;
 
-        // AWS
-        public static readonly string QUEUE_NAME        = "PlayStoreQueue";
-
         // MongoDB
         // TODO: CHANGE TO YOUR OWN SERVER CREDENTIALS IF NEEDED
         // PLEASE NOTE THAT THIS USER HAS READWRITE PERMISSIONS TO THE APPS DATABASE, SO USE IT CAREFULLY
