@@ -1,7 +1,6 @@
 Gac4Net  
 ======================
 
-[![Build status](https://ci.appveyor.com/api/projects/status/l7oc0197mgghmx13?svg=true)](https://ci.appveyor.com/project/igorkulman/appstorecrawler)
 
 Gac4Net is short of google app crawl for net.Simple scalable crawler for Apps data from the [Play Store](https://play.google.com/store).
 
