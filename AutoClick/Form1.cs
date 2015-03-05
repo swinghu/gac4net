@@ -75,7 +75,6 @@ namespace TianXia
             const int WM_HOTKEY = 0x0312; //如果m.Msg的值为0x0312那么表示用户按下了热键 
             const int WM_NCLBUTTONDBLCLK = 0xA3;
 
-
             switch (m.Msg)
             {
                 case WM_HOTKEY:
@@ -105,10 +104,8 @@ namespace TianXia
 
         }
 
-
         [DllImport("User32")]
         public extern static void SetCursorPos(int x, int y);
-
 
         [DllImport("user32.dll")]
         static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
@@ -127,7 +124,6 @@ namespace TianXia
             VirtualDesk = 0x4000,
             Absolute = 0x8000
         }
-
 
         public Form1()
         {
@@ -165,7 +161,6 @@ namespace TianXia
 
                 time = newcount / 3600 + "小时" + (newcount % 3600) / 60 + "分" + newcount % 60 + "秒";
 
-
                 if (timer == 2)
 
                     this.Text = time + "后点击\"坐标二\"";
@@ -181,15 +176,11 @@ namespace TianXia
                 }
 
                 count = count - 1000;
-
-
-
             }
         }
 
         private void button2_Click(object sender, EventArgs e) //"开始点击"按钮事件
         {
-
             a = !a;
 
             if (!a)
